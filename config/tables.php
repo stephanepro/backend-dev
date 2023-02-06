@@ -12,9 +12,11 @@ return [
     |
     */
 
-    'date_format' => 'M j, Y',
-    'date_time_format' => 'M j, Y H:i:s',
-    'time_format' => 'H:i:s',
+    'date_format' => 'j M Y',
+//    'date_time_format' => 'j M Y H:i:s',
+    'date_time_format' => 'j M Y H:i',
+//    'time_format' => 'H:i:s',
+    'time_format' => 'H:i',
 
     /*
     |--------------------------------------------------------------------------

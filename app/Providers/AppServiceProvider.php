@@ -64,9 +64,12 @@ class AppServiceProvider extends ServiceProvider
                         ->url(route('filament.pages.dashboard')),
                 ])
                 ->groups([
-                    NavigationGroup::make('Website')
+                    NavigationGroup::make(__('filament-shield::filament-shield.nav.group'))
                         ->items([
-
+                            NavigationItem::make(__('filament-shield::filament-shield.nav.role.label'))
+                                ->icon('heroicon-o-shield-check')
+                                ->isActiveWhen(fn (): bool => request()->routeIs('filament.resources.shield/roles.*'))
+                                ->url(route('filament.resources.shield/roles.index')),
                         ]),
                 ]);
         });
