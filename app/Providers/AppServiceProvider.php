@@ -71,6 +71,19 @@ class AppServiceProvider extends ServiceProvider
                                 ->isActiveWhen(fn (): bool => request()->routeIs('filament.resources.shield/roles.*'))
                                 ->url(route('filament.resources.shield/roles.index')),
                         ]),
+
+                    NavigationGroup::make('qsldklsqdfsdf')
+                        ->items([
+                            NavigationItem::make('Menu 1')
+                                ->icon('heroicon-o-shield-check')
+                                ->isActiveWhen(fn (): bool => request()->routeIs('filament.resources.shield/roles.*'))
+                                ->url(route('filament.resources.shield/roles.index')),
+
+                            NavigationItem::make('Menu 2')
+                                ->icon('heroicon-o-shield-check')
+                                ->isActiveWhen(fn (): bool => request()->routeIs('filament.resources.shield/roles.*'))
+                                ->url(route('filament.resources.shield/roles.index')),
+                        ])
                 ]);
         });
 
