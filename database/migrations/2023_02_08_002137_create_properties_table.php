@@ -23,7 +23,10 @@ return new class extends Migration
             $table->foreignIdFor(Type::class)->constrained();
             $table->foreignIdFor(Category::class)->constrained();
             $table->foreignIdFor(User::class)->constrained();
-            $table->foreignIdFor(User::class,'verified_by')->constrained();
+
+            $table->unsignedBigInteger('verified_by');
+            $table->foreign('verified_by')->references('id')->on('users');
+
             $table->foreignIdFor(Country::class)->constrained();
             $table->string('name',100);
             $table->text('description');

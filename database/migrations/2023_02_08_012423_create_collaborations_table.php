@@ -17,8 +17,9 @@ return new class extends Migration
         Schema::create('collaborations', function (Blueprint $table) {
             $table->id();
             $table->uuid();
-            $table->foreignIdFor(User::class,'owner_user_id')->constrained();
             $table->foreignIdFor(User::class)->constrained();
+            $table->unsignedBigInteger('owner_user_id');
+            $table->foreign('owner_user_id')->references('id')->on('users');
             $table->enum('role', ['READER', 'EDITOR'])->default('READER');
             $table->timestamps();
         });

@@ -23,8 +23,12 @@ return new class extends Migration
             $table->uuid();
             $table->foreignIdFor(Property::class)->constrained();
             $table->foreignIdFor(User::class)->constrained();
-            $table->foreignIdFor(ReportedUser::class)->constrained();
+
+            $table->unsignedBigInteger('reported_user_id');
+            $table->foreign('reported_user_id')->references('id')->on('users');
+
             $table->foreignIdFor(Reservation::class)->constrained();
+
             $table->text('reason')->nullable();
             $table->timestamps();
         });

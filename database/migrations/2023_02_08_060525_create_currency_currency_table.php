@@ -15,8 +15,14 @@ return new class extends Migration
     public function up()
     {
         Schema::create('currency_currency', function (Blueprint $table) {
-            $table->foreignIdFor(Currency::class, 'from_currency_id')->constrained();
-            $table->foreignIdFor(Currency::class, 'to_currency_id')->constrained();
+
+
+            $table->unsignedBigInteger('from_currency_id');
+            $table->foreign('from_currency_id')->references('id')->on('currencies');
+
+            $table->unsignedBigInteger('to_currency_id');
+            $table->foreign('to_currency_id')->references('id')->on('currencies');
+
             $table->float('rate');
         });
     }

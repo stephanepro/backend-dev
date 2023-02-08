@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->uuid();
             $table->string('code', 10)->unique();
-            $table->enum('dtype', []);
+            $table->enum('dtype', ['MULTI-USE','SINGLE-USE']);
             $table->dateTime('start_date');
             $table->dateTime('end_date');
             $table->timestamps();

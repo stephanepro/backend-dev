@@ -19,10 +19,17 @@ return new class extends Migration
             $table->id();
             $table->uuid();
             $table->text('content');
-            $table->foreignIdFor(User::class,'sender_id')->constrained();
-            $table->foreignIdFor(User::class,'receiver_id')->constrained();
+
+
+
+            $table->unsignedBigInteger('sender_id');
+            $table->foreign('sender_id')->references('id')->on('users');
+
+            $table->unsignedBigInteger('receiver_id');
+            $table->foreign('receiver_id')->references('id')->on('users');
+
             $table->foreignIdFor(Reservation::class)->constrained();
-            $table->text('content');
+
             $table->dateTime('read_at');
             $table->timestamps();
         });
