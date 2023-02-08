@@ -21,7 +21,6 @@ class AppServiceProvider extends ServiceProvider
     {
         //
     }
-
     /**
      * Bootstrap any application services.
      *
@@ -49,8 +48,6 @@ class AppServiceProvider extends ServiceProvider
                     ->icon('heroicon-s-cog'),
             ]);
         });
-
-
         /**
          * Organisation des menus en groupes.
          * Chaque menu appartient à un groupe excepté le menu 'Tableau de bord'
@@ -71,19 +68,6 @@ class AppServiceProvider extends ServiceProvider
                                 ->isActiveWhen(fn (): bool => request()->routeIs('filament.resources.shield/roles.*'))
                                 ->url(route('filament.resources.shield/roles.index')),
                         ]),
-
-                    NavigationGroup::make('qsldklsqdfsdf')
-                        ->items([
-                            NavigationItem::make('Menu 1')
-                                ->icon('heroicon-o-shield-check')
-                                ->isActiveWhen(fn (): bool => request()->routeIs('filament.resources.shield/roles.*'))
-                                ->url(route('filament.resources.shield/roles.index')),
-
-                            NavigationItem::make('Menu 2')
-                                ->icon('heroicon-o-shield-check')
-                                ->isActiveWhen(fn (): bool => request()->routeIs('filament.resources.shield/roles.*'))
-                                ->url(route('filament.resources.shield/roles.index')),
-                        ])
                 ]);
         });
 

@@ -1,13 +1,11 @@
 <?php
 
-use App\Models\Property;
 use App\Models\User;
+use App\Models\Statu;
 use App\Models\Reservation;
-use App\Models\ReportedUser;
-
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration
 {
@@ -18,14 +16,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('reports', function (Blueprint $table) {
+        Schema::create('reservation_statu', function (Blueprint $table) {
             $table->id();
             $table->uuid();
-            $table->foreignIdFor(Property::class)->constrained();
-            $table->foreignIdFor(User::class)->constrained();
-            $table->foreignIdFor(ReportedUser::class)->constrained();
             $table->foreignIdFor(Reservation::class)->constrained();
-            $table->text('reason')->nullable();
+            $table->foreignIdFor(Statu::class)->constrained();
+            $table->foreignIdFor(User::class)->constrained();
+            $table->string('comment',254);
             $table->timestamps();
         });
     }
@@ -37,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('reports');
+        Schema::dropIfExists('reservation_statu');
     }
 };

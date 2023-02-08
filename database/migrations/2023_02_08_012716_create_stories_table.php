@@ -1,13 +1,10 @@
 <?php
 
-use App\Models\Property;
 use App\Models\User;
 use App\Models\Reservation;
-use App\Models\ReportedUser;
-
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration
 {
@@ -18,14 +15,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('reports', function (Blueprint $table) {
+        Schema::create('stories', function (Blueprint $table) {
             $table->id();
             $table->uuid();
-            $table->foreignIdFor(Property::class)->constrained();
             $table->foreignIdFor(User::class)->constrained();
-            $table->foreignIdFor(ReportedUser::class)->constrained();
             $table->foreignIdFor(Reservation::class)->constrained();
-            $table->text('reason')->nullable();
+            $table->string('content',254);
+            $table->string('media',100);
+            $table->boolean('approved');
             $table->timestamps();
         });
     }
@@ -37,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('reports');
+        Schema::dropIfExists('stories');
     }
 };
