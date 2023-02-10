@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Currency;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,14 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('prices', function (Blueprint $table) {
+        Schema::create('services', function (Blueprint $table) {
             $table->id();
             $table->uuid();
-            $table->foreignIdFor(Property::class)->constrained();
-            $table->foreignIdFor(Currency::class)->constrained();
-            $table->double('amount');
-            $table->integer('min_duration');
-            $table->integer('max_duration');
+            $table->string('name',100);
+            $table->text('description',100);
+            $table->string('icon',100);
+            $table->double('default_cost');
             $table->timestamps();
         });
     }
@@ -33,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('prices');
+        Schema::dropIfExists('services');
     }
 };

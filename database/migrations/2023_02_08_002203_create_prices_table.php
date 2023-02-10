@@ -1,11 +1,10 @@
 <?php
 
+use App\Models\Currency;
 use App\Models\Property;
-use App\Models\User;
-use App\Models\Reservation;
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration
 {
@@ -16,13 +15,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('comments', function (Blueprint $table) {
+        Schema::create('prices', function (Blueprint $table) {
             $table->id();
             $table->uuid();
             $table->foreignIdFor(Property::class)->constrained();
-            $table->foreignIdFor(User::class)->constrained();
-            $table->foreignIdFor(Reservation::class)->constrained();
-            $table->integer('note');
+            $table->foreignIdFor(Currency::class)->constrained();
+            $table->double('amount');
+            $table->integer('min_duration');
+            $table->integer('max_duration');
             $table->timestamps();
         });
     }
@@ -34,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('comments');
+        Schema::dropIfExists('prices');
     }
 };
